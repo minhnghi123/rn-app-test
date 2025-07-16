@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const useFetch = <T>(
   fetchFunction: () => Promise<T>,
@@ -20,6 +20,8 @@ export const useFetch = <T>(
           ? error
           : new Error("An unexpected error occurred")
       );
+    } finally {
+      setLoading(false);
     }
   };
   const reset = () => {

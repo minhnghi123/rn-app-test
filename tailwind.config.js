@@ -5,7 +5,6 @@ module.exports = {
     "./app/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}",
     "./App.{js,jsx,ts,tsx}",
-    "./<custom-folder>/**/*.{js,jsx,ts,tsx}",
   ],
   presets: [require("nativewind/preset")],
   theme: {
@@ -14,7 +13,7 @@ module.exports = {
         primary: "#030014",
         secondary: "#151312",
         light: {
-          100: "#D6C66FF",
+          100: "#D6C66F",
           200: "#A8B5DB",
           300: "#9CA4AB",
         },
