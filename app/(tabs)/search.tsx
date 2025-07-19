@@ -6,6 +6,7 @@ import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { fetchMovies } from "@/services/api";
+import { updateSearchCount } from "@/services/appwrite";
 import { useFetch } from "@/services/useFetch";
 
 const Search = () => {
@@ -26,11 +27,17 @@ const Search = () => {
   // using debounce search
   useEffect(() => {
     const timeOutId = setTimeout(async () => {
-      if (searchQuery.trim()) await refetchMovies();
-      else resetMovies();
+      if (searchQuery.trim()) {
+        await refetchMovies();
+      } else resetMovies();
     }, 500);
     return () => clearTimeout(timeOutId);
   }, [searchQuery]);
+
+  useEffect(() => {
+    if (movies?.length > 0 && movies[0])
+      updateSearchCount(searchQuery, movies[0]);
+  }, [movies]);
   return (
     <View className="flex-1 bg-primary">
       <Image
